@@ -1,3 +1,5 @@
+import { connect, useSelector } from "react-redux";
+
 function formatCurrency(value) {
   return new Intl.NumberFormat("en", {
     style: "currency",
@@ -5,8 +7,16 @@ function formatCurrency(value) {
   }).format(value);
 }
 
-function BalanceDisplay() {
-  return <div className="balance">{formatCurrency(123456)}</div>;
+function BalanceDisplay({ balance }) {
+  // new way
+  // const balance = useSelector((store) => store.account.balance);
+  return <div className="balance">{formatCurrency(balance)}</div>;
 }
-
-export default BalanceDisplay;
+// lets try to use the old way of getting any store value
+// 1 create this  mapStateToProps - and use connect which will return new component with the provided state as props
+function mapStateToProps(state) {
+  return {
+    balance: state.account.balance,
+  };
+}
+export default connect(mapStateToProps)(BalanceDisplay);
