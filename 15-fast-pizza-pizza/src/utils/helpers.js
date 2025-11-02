@@ -19,3 +19,5 @@ export function calcMinutesLeft(dateStr) {
   const d2 = new Date(dateStr).getTime();
   return Math.round((d2 - d1) / 60000);
 }
+
+export const inputStyle = `focus:rind w-full rounded-full border border-stone-200 px-4 py-2 text-sm transition-all duration-300 placeholder:text-stone-400 focus:ring-yellow-400 focus:outline-none md:px-6 md:py-3`;
