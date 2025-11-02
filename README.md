@@ -23,3 +23,4 @@ these are the react projects i created with their demos in the ReadMe.md
 ### 11-worldwise: https://worldwise-alawy.netlify.app/
 ### 12-atomic-blog: https://context-blog.netlify.app/
 ### 13-workout-timer: https://workout-timer-eslam.netlify.app/
+### 14-redux-intro: https://redux-bank-alawy.netlify.app/
