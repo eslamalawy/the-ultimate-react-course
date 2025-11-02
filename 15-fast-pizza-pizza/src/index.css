@@ -1,4 +1,44 @@
 @import "tailwindcss";
+/* to include tw prefix or any other */
+/* @import "tailwindcss" prefix(tw); now you can use tw:class-name */
+
+/* to include plugins */
+/* @plugin "daisyui"; */
+
+@layer components {
+  .input {
+    @apply w-full rounded-full border border-stone-200 px-4 py-2 text-sm transition-all duration-300 placeholder:text-stone-400 focus:ring-yellow-400 focus:outline-none md:px-6 md:py-3;
+  }
+}
+
+/* create new utility */
+/* @utility jamynew {
+  @apply w-full border-stone-700 font-bold px-4 py-2 text-sm
+} 
+
+@utility jamynew2 {
+  width: 56rem;
+} */
+
+/*  */
+@theme {
+  /* https://tailwindcss.com/docs/theme#theme-variable-namespaces */
+  /* https://tailwindcss.com/docs/theme#default-theme-variable-reference */
+  /* edit the font */
+  --font-sans: "Roboto Mono, monospace";
+
+  /* edit the breakpoints */
+  /* if you want only these breakpoints only  add the following*/
+  /* --breakpoint-*: initial; */
+  /* --breakpoint-sm: 480px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 976px; */
+
+  /* --color-twitter-blue: #1da1f2; */
+
+  /* if you want to overwrite any color */
+  /* --color-orange-500: #ffa500; */
+}
 
 /* https://dev.to/afif/i-made-100-css-loaders-for-your-next-project-4eje */
 .loader {

@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
 import { createOrder } from "../../services/apiRestaurant";
 import Button from "../../ui/Button";
-import { inputStyle } from "../../utils/helpers";
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str) =>
@@ -49,13 +48,13 @@ function CreateOrder() {
       <Form method="POST">
         <div>
           <label>First Name</label>
-          <input className={inputStyle} type="text" name="customer" required />
+          <input className="input focus:rind" type="text" name="customer" required />
         </div>
 
         <div>
           <label>Phone number</label>
           <div>
-            <input className={inputStyle} type="tel" name="phone" required />
+            <input className="input focus:rind" type="tel" name="phone" required />
           </div>
           {formErrors?.phone && <p>{formErrors.phone}</p>}
         </div>
@@ -63,7 +62,7 @@ function CreateOrder() {
         <div>
           <label>Address</label>
           <div>
-            <input className={inputStyle} type="text" name="address" required />
+            <input className="input focus:rind" type="text" name="address" required />
           </div>
         </div>
 
