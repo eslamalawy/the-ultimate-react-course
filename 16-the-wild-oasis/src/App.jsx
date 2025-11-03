@@ -15,7 +15,7 @@ import AppLayout from "./ui/AppLayout";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 0, //1 Min
+      staleTime: 0, // instant refetch once tab or componant changed
       // staleTime: 60 * 1000, //1 Min
     },
   },
