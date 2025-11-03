@@ -1,29 +1,37 @@
-/*function getPosition() {
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { getAddress } from "../../services/apiGeocoding";
+function getPosition() {
   return new Promise(function (resolve, reject) {
     navigator.geolocation.getCurrentPosition(resolve, reject);
   });
 }
 
-async function fetchAddress() {
-  // 1) We get the user's geolocation position
-  const positionObj = await getPosition();
-  const position = {
-    latitude: positionObj.coords.latitude,
-    longitude: positionObj.coords.longitude,
-  };
+export const fetchAddress = createAsyncThunk(
+  "user/fetchAdress",
+  async function fetchAddress() {
+    // 1) We get the user's geolocation position
+    const positionObj = await getPosition();
+    const position = {
+      latitude: positionObj.coords.latitude,
+      longitude: positionObj.coords.longitude,
+    };
 
-  // 2) Then we use a reverse geocoding API to get a description of the user's address, so we can display it the order form, so that the user can correct it if wrong
-  const addressObj = await getAddress(position);
-  const address = `${addressObj?.locality}, ${addressObj?.city} ${addressObj?.postcode}, ${addressObj?.countryName}`;
+    // 2) Then we use a reverse geocoding API to get a description of the user's address, so we can display it the order form, so that the user can correct it if wrong
+    const addressObj = await getAddress(position);
+    const address = `${addressObj?.locality}, ${addressObj?.city} ${addressObj?.postcode}, ${addressObj?.countryName}`;
 
-  // 3) Then we return an object with the data that we are interested in
-  return { position, address };
-}
-*/
+    // 3) Then we return an object with the data that we are interested in
+    // payload of the FULLFILLED state
+    return { position, address };
+  },
+);
 
-import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   username: "",
+  status: "idle",
+  position: {},
+  address: "",
+  error: "",
 };
 
 const userSlise = createSlice({
@@ -34,6 +42,23 @@ const userSlise = createSlice({
       state.username = action.payload;
     },
   },
+  extraReducers: (builder) =>
+    builder.addAsyncThunk(fetchAddress, {
+      pending: (state, action) => {
+        state.status = "loading";
+      },
+      fulfilled: (state, action) => {
+        state.status = "idle";
+        state.address = action.payload.address;
+        state.position = action.payload.position;
+      },
+      rejected: (state, action) => {
+        state.status = "error";
+      },
+      settled: (state, action) => {
+        state.status = action.meta.requestStatus;
+      },
+    }),
 });
 
 export const { updateName } = userSlise.actions;
