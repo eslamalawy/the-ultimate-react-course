@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
-export const GlobalStyled = createGlobalStyle`
+const GlobalStyled = createGlobalStyle`
 
 /* Colors adapted from https://tailwindcss.com/docs/customizing-colors */
 
@@ -187,3 +187,4 @@ FOR DARK MODE
 */
 
 `;
+export default GlobalStyled;
