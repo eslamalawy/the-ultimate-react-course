@@ -54,10 +54,13 @@ const userSlise = createSlice({
       },
       rejected: (state, action) => {
         state.status = "error";
+        state.error =
+          "There was a problem getting your address. Make sure to fill this field!";
+        // state.error = action.error.message;
       },
-      settled: (state, action) => {
-        state.status = action.meta.requestStatus;
-      },
+      // settled: (state, action) => {
+      //   state.status = action.meta.requestStatus;
+      // },
     }),
 });
 
