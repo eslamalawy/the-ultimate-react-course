@@ -9,32 +9,86 @@ export async function getCabins() {
 
   return data;
 }
-
-export async function createCabin(newCabin) {
-  const imageName = `${Math.random()}-${newCabin.image.name}`.replaceAll(
-    "/",
-    "",
-  );
-  const imagePath = `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/cabin-images/${imageName}`;
-  // 1. Create cabin
-  const { data, error } = await supabase
-    .from("cabins")
-    .insert([{ ...newCabin, image: imagePath }]);
-  if (error) {
-    console.error(error);
-    throw new Error("Cabin could not be created");
-  }
-  // 2. Upload Image
+async function updateCabinImg(oldImageName, newImageName, image) {
   const { error: storageError } = await supabase.storage
     .from("cabin-images")
-    .upload(imageName, newCabin.image);
+    .remove(oldImageName);
 
   if (storageError) {
     console.error(storageError);
-    await deleteCabin(data.id);
-    throw new Error(
-      "Cabin image could not be uploaded and the cabin was not created",
-    );
+    throw new Error("Cabin image could not be updated try different one!");
+  }
+
+  return await uploadCabinImg(newImageName, image);
+}
+
+async function uploadCabinImg(imageName, image) {
+  const { error: storageError } = await supabase.storage
+    .from("cabin-images")
+    .upload(imageName, image);
+
+  if (storageError) {
+    console.error(storageError);
+    throw new Error("Cabin image could not be uploaded try different one!");
+  }
+  const { data } = await supabase.storage
+    .from("cabin-images")
+    .getPublicUrl(imageName);
+
+  return data;
+}
+
+async function handleImage(image, mode, oldName = null) {
+  if (mode === "upload") {
+    const imageName = `${Math.random()}-${image.name}`.replaceAll("/", "");
+    const { publicUrl } = await uploadCabinImg(imageName, image);
+    return publicUrl;
+  } else if (mode === "replace") {
+    if (image.name) {
+      const newImageName = `${Math.random()}-${image.name}`.replaceAll("/", "");
+      const { publicUrl } = await updateCabinImg(oldName, newImageName, image);
+      return publicUrl;
+    } else {
+      //this img have no image.name so returning the same url
+      return image;
+    }
+  }
+}
+
+function getFileNameFromUrl(url) {
+  const parts = url.split("/");
+  return parts[parts.length - 1];
+}
+
+export async function createEditCabin(newCabin, id) {
+  if (!id) console.log("!id>create", id);
+  if (id) console.log("id>edit", id);
+
+  let publicUrl;
+  if (id && newCabin.image.name) {
+    const { data, error } = await supabase
+      .from("cabins")
+      .select("id,image")
+      .eq("id", id);
+    if (error) {
+      console.error(error);
+      throw new Error("Selected cabin does not exist!");
+    }
+    const oldName = getFileNameFromUrl(data[0].image);
+    publicUrl = await handleImage(newCabin.image, "replace", oldName);
+  } else {
+    publicUrl = await handleImage(newCabin.image, id ? "replace" : "upload");
+  }
+
+  // 1. Create/Edit cabin
+  let query = supabase.from("cabins");
+  // A) Create
+  if (!id) query = query.insert([{ ...newCabin, image: publicUrl }]);
+  if (id) query = query.update({ ...newCabin, image: publicUrl }).eq("id", id);
+  const { data, error } = await query.select().single();
+  if (error) {
+    console.error(error);
+    throw new Error("Cabin could not be created");
   }
 
   return data;
