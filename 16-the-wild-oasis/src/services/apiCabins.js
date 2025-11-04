@@ -61,9 +61,6 @@ function getFileNameFromUrl(url) {
 }
 
 export async function createEditCabin(newCabin, id) {
-  if (!id) console.log("!id>create", id);
-  if (id) console.log("id>edit", id);
-
   let publicUrl;
   if (id && newCabin.image.name) {
     const { data, error } = await supabase
