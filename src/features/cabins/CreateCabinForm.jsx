@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import Input from "../../ui/Input";
 import Form from "../../ui/Form";
@@ -12,21 +11,29 @@ import FormRow from "../../ui/FormRow";
 
 function CreateCabinForm() {
   const queryClient = useQueryClient();
-  const { register, handleSubmit, reset, getValues, formState } = useForm();
-  const { errors } = formState;
-  const { isLoading: isCreating, mutate } = useMutation({
+
+  const { isPending: isCreating, mutate } = useMutation({
     mutationFn: createCabin,
     onSuccess: () => {
       toast.success("New cabin successfully created");
       queryClient.invalidateQueries({ queryKey: ["cabins"] });
-      reset();
+      resetTheForm(); // we depend here on the closure
     },
     onError: (err) => toast.error(err.message),
   });
 
+  const { register, handleSubmit, reset, getValues, formState } = useForm({
+    disabled: isCreating, // Disable all inputs if disableCondition is true -> isCreating
+  });
+  const { errors } = formState;
+
+  function resetTheForm() {
+    reset();
+  }
+
   function onSubmit(data) {
-    // console.log(data);
-    mutate(data);
+    // console.log("onSubmit", data);
+    mutate({ ...data, image: data.image[0] });
   }
   function onError(errors) {
     // incase you need it
@@ -42,14 +49,12 @@ function CreateCabinForm() {
           {...register("name", {
             required: "This field is required",
           })}
-          disabled={isCreating}
         />
       </FormRow>
 
       <FormRow label="Maximum capacity" error={errors?.maxCapacity?.message}>
         <Input
           type="number"
-          disabled={isCreating}
           id="maxCapacity"
           {...register("maxCapacity", {
             required: "This field is required",
@@ -61,11 +66,10 @@ function CreateCabinForm() {
         />
       </FormRow>
 
-      <FormRow  label="Regular price" error={errors?.regularPrice?.message}>
+      <FormRow label="Regular price" error={errors?.regularPrice?.message}>
         <Input
           type="number"
           id="regularPrice"
-          disabled={isCreating}
           {...register("regularPrice", {
             required: "This field is required",
           })}
@@ -76,22 +80,28 @@ function CreateCabinForm() {
         <Input
           type="number"
           id="discount"
-          disabled={isCreating}
           defaultValue={0}
           {...register("discount", {
             required: "This field is required",
-            validate: (value) =>
-              value <= getValues().regularPrice ||
+
+            validate: (value, formValues) =>
+              Number(value) <= Number(formValues.regularPrice) ||
               "Discount should be less than regular price",
+            // it can also work like this
+            // validate: (value) =>
+            //   value <= getValues().regularPrice ||
+            //   "Discount should be less than regular price",
           })}
         />
       </FormRow>
 
-      <FormRow label="Description for website" error={errors?.description?.message}>
+      <FormRow
+        label="Description for website"
+        error={errors?.description?.message}
+      >
         <Textarea
           type="number"
           id="description"
-          disabled={isCreating}
           defaultValue=""
           {...register("description", {
             required: "This field is required",
@@ -100,15 +110,28 @@ function CreateCabinForm() {
       </FormRow>
 
       <FormRow label="Cabin photo">
-        <FileInput id="image" accept="image/*" />
+        <FileInput
+          id="image"
+          accept="image/*"
+          {...register("image", {
+            required: "This field is required",
+          })}
+        />
       </FormRow>
 
       <FormRow>
-        {/* type is an HTML attribute! */}
-        <Button variation="secondary" type="reset" onClick={() => reset()}>
+        {/* type is an HTML attribute!  and we use the disabled because it's part of the form inputs as we didnot use ...register*/}
+        <Button
+          disabled={isCreating}
+          variation="secondary"
+          type="reset"
+          onClick={() => reset()}
+        >
           Cancel
         </Button>
-        <Button disabled={isCreating}>Add cabin</Button>
+        <Button disabled={isCreating}>
+          {isCreating ? "Adding..." : "Add cabin"}
+        </Button>
       </FormRow>
     </Form>
   );
