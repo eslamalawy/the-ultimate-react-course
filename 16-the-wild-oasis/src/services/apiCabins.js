@@ -39,19 +39,17 @@ async function uploadCabinImg(imageName, image) {
 }
 
 async function handleImage(image, mode, oldName = null) {
-  if (mode === "upload") {
-    const imageName = `${Math.random()}-${image.name}`.replaceAll("/", "");
-    const { publicUrl } = await uploadCabinImg(imageName, image);
-    return publicUrl;
-  } else if (mode === "replace") {
-    if (image.name) {
-      const newImageName = `${Math.random()}-${image.name}`.replaceAll("/", "");
+  if (image.name) {
+    const newImageName = `${Math.random()}-${image.name}`.replaceAll("/", "");
+    if (mode === "upload") {
+      const { publicUrl } = await uploadCabinImg(newImageName, image);
+      return publicUrl;
+    } else if (mode === "replace") {
       const { publicUrl } = await updateCabinImg(oldName, newImageName, image);
       return publicUrl;
-    } else {
-      //this img have no image.name so returning the same url
-      return image;
     }
+  } else {
+    return image;
   }
 }
 
