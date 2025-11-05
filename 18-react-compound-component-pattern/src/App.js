@@ -12,7 +12,44 @@ export default function App() {
         hideLabel={false}
         hideIncrease={false}
         hideDecrease={false}
+        positionCount="top"
       />
+      <div>
+        <Counter>
+          <Counter.Label>My super flexible counter</Counter.Label>
+          <Counter.Increase icon="+" />
+          <Counter.Count />
+          <Counter.Decrease icon="-" />
+        </Counter>
+      </div>
+      <br />
+      <div>
+        <Counter>
+          <Counter.Label>My super flexible counter</Counter.Label>
+          <Counter.Decrease icon="-" />
+          <Counter.Count />
+          <Counter.Increase icon="+" />
+        </Counter>
+      </div>
+
+            <br />
+      <div>
+        <Counter>
+          <Counter.Decrease icon="-" />
+          <Counter.Count />
+          <Counter.Increase icon="+" />
+          <Counter.Label>My super flexible counter</Counter.Label>
+        </Counter>
+      </div>
+
+      <br />
+      <div>
+        <Counter>
+          <Counter.Decrease icon="◀" />
+          <Counter.Count />
+          <Counter.Increase icon="▶" />
+        </Counter>
+      </div>
     </div>
   );
 }
