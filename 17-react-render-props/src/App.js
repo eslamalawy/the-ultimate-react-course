@@ -92,7 +92,7 @@ const ProductListWithToggles = withToggles(ProductList);
 export default function App() {
   return (
     <div>
-      <h1>Render Props Demo</h1>
+      <h1>Render Props Pattern</h1>
 
       <div className="col-2">
         <List
@@ -117,6 +117,7 @@ export default function App() {
       </div>
       <br />
       <hr />
+      <h1>Higher-Order Component (HOC) Pattern</h1>
       <br />
       <div className="col-2">
         <ProductList title="products HOC" items={products} />
