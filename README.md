@@ -26,3 +26,4 @@ these are the react projects i created with their demos in the ReadMe.md
 ### 14-redux-intro: https://redux-bank-alawy.netlify.app/
 ## 15-fast-pizza: https://fast-pizza-eslam.netlify.app/
 ### 17-react-render-props-and-hoc-patterns: https://react-render-props-and-hoc-patterns.netlify.app/
+### 18-react-compound-component-pattern: https://react-compound-component-pattern.netlify.app/
