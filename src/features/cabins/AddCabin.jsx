@@ -4,6 +4,22 @@ import Button from "../../ui/Button";
 import CreateCabinForm from "./CreateCabinForm";
 import CabinTable from "./CabinTable";
 
+// with new compound modal
+function AddCabin() {
+  return (
+    <div>
+      <Modal>
+        <Modal.Open opens="cabin-form">
+          <Button>Add new Cabin</Button>
+        </Modal.Open>
+        <Modal.Window name="cabin-form">
+          <CreateCabinForm />
+        </Modal.Window>
+      </Modal>
+    </div>
+  );
+}
+// old way
 // function AddCabin() {
 //   const [isOpenModal, setIsOpenModal] = useState(false);
 
@@ -20,26 +36,4 @@ import CabinTable from "./CabinTable";
 //     </div>
 //   );
 // }
-
-// with new compound modal
-function AddCabin() {
-  return (
-    <Modal>
-      <Modal.Open opens="cabin-form">
-        <Button>Add new Cabin</Button>
-      </Modal.Open>
-      <Modal.Window name="cabin-form">
-        <CreateCabinForm />
-      </Modal.Window>
-
-      <Modal.Open opens="table">
-        <Button>Show teble</Button>
-      </Modal.Open>
-      <Modal.Window name="table">
-        <CabinTable />
-      </Modal.Window>
-    </Modal>
-  );
-}
-
 export default AddCabin;
