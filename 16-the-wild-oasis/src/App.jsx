@@ -40,9 +40,9 @@ function App() {
             <Route path="users" element={<Users />}></Route>
             <Route path="settings" element={<Settings />}></Route>
             <Route path="account" element={<Account />}></Route>
+          </Route>
             <Route path="login" element={<Login />}></Route>
             <Route path="*" element={<PageNotFound />}></Route>
-          </Route>
         </Routes>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
