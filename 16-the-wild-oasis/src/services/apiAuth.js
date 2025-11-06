@@ -1,4 +1,3 @@
-import { useUser } from "../features/authentication/useUser";
 import { getFileNameFromUrl } from "../utils/helpers";
 import supabase from "./supabase";
 
@@ -88,6 +87,6 @@ export async function updateCurrentUser({ password, fullName, avatar }) {
     },
   });
 
-  if (error2) throw new Error(error.message);
+  if (error2) throw new Error(error2.message);
   return updatedUser;
 }
