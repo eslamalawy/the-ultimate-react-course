@@ -22,6 +22,7 @@ const Avatar = styled.img`
 `;
 
 function UserAvatar() {
+  // user already kept in the react query cache no need to use isLoading...
   const { user } = useUser();
   const { fullName, avatar } = user.user_metadata;
   return (

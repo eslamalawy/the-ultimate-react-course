@@ -1,3 +1,4 @@
+import { getFileNameFromUrl } from "../utils/helpers";
 import supabase from "./supabase";
 
 export async function getCabins() {
@@ -51,11 +52,6 @@ async function handleImage(image, mode, oldName = null) {
   } else {
     return image;
   }
-}
-
-function getFileNameFromUrl(url) {
-  const parts = url.split("/");
-  return parts[parts.length - 1];
 }
 
 export async function createEditCabin(newCabin, id) {
