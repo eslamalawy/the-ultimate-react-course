@@ -12,6 +12,8 @@ dist
 dist-ssr
 *.local
 tmp
+my_private_notes
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
