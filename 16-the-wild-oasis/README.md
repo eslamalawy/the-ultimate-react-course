@@ -1,4 +1,17 @@
-# React + Vite
+
+# The Wild Oasis
+### this project integerated the following technology decisions and tools:
+01) React Router
+02) React Query
+03) Context Api
+04) React Hook Form
+05) Styled Components
+06) React Error Boundary
+07) React Icons
+08) Recharts
+09) Supabase
+10) Date-fns
+11) React Hot Toast
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
