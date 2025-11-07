@@ -1,4 +1,11 @@
-# React + Vite
+# WorldWise
+### this project integerated the following technology decisions and tools:
+01) React Router
+02) Context Api
+03) CSS Modules Stylesheet
+04) json-server
+05) Leaflet
+06) React Datepicker
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
