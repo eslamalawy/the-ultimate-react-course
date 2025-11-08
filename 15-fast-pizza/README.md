@@ -1,4 +1,9 @@
-# React + Vite
+# Fast React Pizza Co.
+### this project integerated the following technology decisions and tools:
+01) React + Vite
+02) React Router
+03) Redux toolkit
+04) Tailwindcss newest version(^4.1.16)  with @theme config and prettier-plugin-tailwindcss
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
