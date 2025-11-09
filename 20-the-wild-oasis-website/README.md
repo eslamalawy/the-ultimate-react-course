@@ -1,10 +1,12 @@
 # The Wild Oasis Website
 
 ### this project integerated the following technology decisions and tools:
+
 1.  NEXT.js Framework
 2.  Tailwindcss
-3.  Heroicons
-4.  Date-fns
+3.  Supabase
+4.  Heroicons
+5.  Date-fns
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
