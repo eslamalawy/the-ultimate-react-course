@@ -39,7 +39,7 @@ export default async function Page({ params }) {
             <li className="flex items-center gap-3">
               <UsersIcon className="h-5 w-5 text-primary-600" />
               <span className="text-lg">
-                For up to <span className="font-bold">{max.Capacity}</span>{" "}
+                For up to <span className="font-bold">{maxCapacity}</span>{" "}
                 guests
               </span>
             </li>
