@@ -5,8 +5,9 @@
 1.  NEXT.js Framework
 2.  Tailwindcss
 3.  Supabase
-4.  Heroicons
-5.  Date-fns
+4.  [Heroicons](https://heroicons.com/)
+5.  [Date-fns](https://date-fns.org/docs/Getting-Started)
+6.  [Clsx](https://github.com/lukeed/clsx)
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 

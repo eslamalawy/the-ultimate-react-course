@@ -1,7 +1,8 @@
 import ReservationCard from "@/app/_components/ReservationCard";
+// import clsx from "clsx";
 export const metadata = {
-  title: "Reservations"
-}
+  title: "Reservations",
+};
 
 export default function Page() {
   // CHANGE
@@ -9,14 +10,21 @@ export default function Page() {
 
   return (
     <div>
-      <h2 className="font-semibold text-2xl text-accent-400 mb-7">
+      <h2 className="mb-7 text-2xl font-semibold text-accent-400">
         Your reservations
       </h2>
+      {/* <div
+        className={clsx("text-2xl", "bg-teal-500" && false, {
+          "bg-red-600": bookings.length,
+        })}
+      >
+        Hello
+      </div> */}
 
       {bookings.length === 0 ? (
         <p className="text-lg">
           You have no reservations yet. Check out our{" "}
-          <a className="underline text-accent-500" href="/cabins">
+          <a className="text-accent-500 underline" href="/cabins">
             luxury cabins &rarr;
           </a>
         </p>
