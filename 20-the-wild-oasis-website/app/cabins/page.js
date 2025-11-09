@@ -2,6 +2,11 @@ import { Suspense } from "react";
 import CabinList from "@/app/_components/CabinList";
 import Spinner from "@/app/_components/Spinner";
 
+// DATA CACHE  -> to become dynamic (must be value directly not computed value)
+// export const revalidate = 0; // NO CACHE AT ALL
+// export const revalidate = 3600; // EVERY 1 HOUR FETCH NEW DATA AND CACHE IT
+// export const revalidate = 15; // 15 seconds
+
 export const metadata = {
   title: "Cabins",
 };
