@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import CabinList from "@/app/_components/CabinList";
 import Spinner from "@/app/_components/Spinner";
+import Filter from "@/app/_components/Filter";
 
 // DATA CACHE  -> to become dynamic (must be value directly not computed value)
 // export const revalidate = 0; // NO CACHE AT ALL
@@ -11,7 +12,9 @@ export const metadata = {
   title: "Cabins",
 };
 
-export default function Page() {
+export default function Page({ searchParams }) {
+  const filter = searchParams?.capacity ?? "all";
+  // searchParams make the page dynamic - so it will revalidate - for the code above just for reference
   return (
     <div>
       <h1 className="mb-5 text-4xl font-medium text-accent-400">
@@ -25,9 +28,11 @@ export default function Page() {
         home away from home. The perfect spot for a peaceful, calm vacation.
         Welcome to paradise.
       </p>
-
-      <Suspense fallback={<Spinner />}>
-        <CabinList />
+      <div className="mb-8 flex justify-end">
+        <Filter />
+      </div>
+      <Suspense fallback={<Spinner />} key={filter}>
+        <CabinList filter={filter} />
       </Suspense>
     </div>
   );
