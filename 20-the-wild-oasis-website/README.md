@@ -9,6 +9,7 @@
 5.  [Heroicons](https://heroicons.com/)
 6.  [Date-fns](https://date-fns.org/docs/Getting-Started)
 7.  [Clsx](https://github.com/lukeed/clsx)
+8.  [React Day Picker](https://daypicker.dev/)
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
