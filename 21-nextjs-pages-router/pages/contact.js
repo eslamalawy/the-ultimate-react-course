@@ -5,13 +5,19 @@ export default function Contact() {
   const [success, setSuccess] = useState(false);
   const [message, setMessage] = useState('');
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    const formData = new FormData(e.target)
+    const contactData = Object.fromEntries(formData.entries());
+    console.log(contactData)
+  }
   return (
     <div>
       <h1 className='text-4xl mb-8 text-accent-400 font-medium'>
         Any question? Shoot us a message
       </h1>
 
-      <form className='bg-primary-900 py-10 px-14 text-lg space-y-6 max-w-5xl mx-auto'>
+      <form onSubmit={handleSubmit} className='bg-primary-900 py-10 px-14 text-lg space-y-6 max-w-5xl mx-auto'>
         <div className='space-y-2'>
           <label>Full name</label>
           <input
@@ -49,6 +55,7 @@ export default function Contact() {
           <label>Message</label>
           <textarea
             name='message'
+            required
             className='px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm'
             rows={3}
           />
