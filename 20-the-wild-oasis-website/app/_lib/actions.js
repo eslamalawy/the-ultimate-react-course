@@ -16,7 +16,6 @@ export async function updateProfile(formData) {
 
   if (!nationality || !countryFlag)
     throw new Error("Please provide a nationality");
-  console.log(updateData);
   const data = await updateGuest(session.user.guestId, updateData);
   // Revalidate the client ROUTER CACHE
   revalidatePath("/account/profile");
