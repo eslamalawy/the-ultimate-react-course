@@ -1,5 +1,6 @@
 "use server"; //to be like an endpoint bridge between client and server actions
 
+import { revalidatePath } from "next/cache";
 import { auth, signIn, signOut } from "./auth";
 import { updateGuest } from "./data-service";
 
@@ -17,7 +18,8 @@ export async function updateProfile(formData) {
     throw new Error("Please provide a nationality");
   console.log(updateData);
   const data = await updateGuest(session.user.guestId, updateData);
-  console.log(data)
+  // Revalidate the client ROUTER CACHE
+  revalidatePath("/account/profile");
 }
 
 export async function signInAction() {
