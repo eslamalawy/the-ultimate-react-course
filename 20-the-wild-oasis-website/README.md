@@ -2,7 +2,7 @@
 
 ### this project integerated the following technology decisions and tools:
 
-1.  NEXT.js Framework (v14.2.33) + middleware
+1.  NEXT.js Framework (v14.2.33) + middleware + server actions + useformstatus
 2.  Tailwindcss
 3.  Supabase
 4.  React Error Boundary

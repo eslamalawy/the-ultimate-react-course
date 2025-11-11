@@ -1,25 +1,19 @@
 import ReservationCard from "@/app/_components/ReservationCard";
-// import clsx from "clsx";
+import { auth } from "@/app/_lib/auth";
+import { getBookings } from "@/app/_lib/data-service";
 export const metadata = {
   title: "Reservations",
 };
 
-export default function Page() {
-  // CHANGE
-  const bookings = [];
+export default async function Page() {
+  const session = await auth();
+  const bookings = await getBookings(session?.user?.guestId);
 
   return (
     <div>
       <h2 className="mb-7 text-2xl font-semibold text-accent-400">
         Your reservations
       </h2>
-      {/* <div
-        className={clsx("text-2xl", "bg-teal-500" && false, {
-          "bg-red-600": bookings.length,
-        })}
-      >
-        Hello
-      </div> */}
 
       {bookings.length === 0 ? (
         <p className="text-lg">
