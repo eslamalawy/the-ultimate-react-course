@@ -2,7 +2,13 @@
 
 import { revalidatePath } from "next/cache";
 import { auth, signIn, signOut } from "./auth";
-import { deleteBooking, getBookings, updateGuest } from "./data-service";
+import {
+  deleteBooking,
+  getBookings,
+  updateBooking,
+  updateGuest,
+} from "./data-service";
+import { redirect } from "next/navigation";
 
 export async function updateProfile(formData) {
   const session = await auth();
@@ -27,10 +33,40 @@ export async function deleteReservation(bookingId) {
   const guestBookings = await getBookings(session.user.guestId);
   const guestBookingsIds = guestBookings.map((booking) => booking.id);
 
-  if(!guestBookingsIds.includes(bookingId)) throw new Error("You are not allowed to remove this booking");
+  if (!guestBookingsIds.includes(bookingId))
+    throw new Error("You are not allowed to delete this booking");
+  // TODO: check if not isPast startdate
   const data = await deleteBooking(bookingId);
   // Revalidate the client ROUTER CACHE
   revalidatePath("/account/reservations");
+}
+
+export async function updateBookingAction(formData) {
+  // 1) Authentication
+  const session = await auth();
+  if (!session) throw new Error("You must be logged in");
+
+  // 2) Authorization
+  const guestBookings = await getBookings(session.user.guestId);
+  const guestBookingsIds = guestBookings.map((booking) => booking.id);
+
+  const bookingId = Number(formData.get("bookingId"));
+  if (!guestBookingsIds.includes(bookingId))
+    throw new Error("You are not allowed to update this booking");
+  // TODO: check if not isPast startdate
+  // 3) Building update data
+  const updateData = {
+    numGuests: Number(formData.get("numGuests")),
+    observations: formData.get("observations").slice(0, 1000),
+  };
+  // 4) Mutation
+  const data = await updateBooking(bookingId, updateData);
+  // 5) Revalidate the client ROUTER CACHE
+  revalidatePath(`/account/reservations/edit/${bookingId}`);
+  revalidatePath("/account/reservations");
+
+  // 6) Redirecting
+  redirect("/account/reservations");
 }
 
 export async function signInAction() {
