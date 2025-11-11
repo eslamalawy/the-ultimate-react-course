@@ -1,7 +1,7 @@
 "use client";
 import { useOptimistic } from "react";
 import ReservationCard from "./ReservationCard";
-import { deleteReservation } from "@/app/_lib/actions";
+import { deleteBookingAction } from "@/app/_lib/actions";
 
 function ReservationList({ bookings }) {
   // it accept current state : bookings
@@ -12,13 +12,13 @@ function ReservationList({ bookings }) {
       return curBookings.filter((booking) => booking.id !== bookingId);
     },
   );
-  
+
   // callback for adding
   // (curBookings, bookingId) => {return [...curBookings, newBooking]}
-  
+
   async function handleDelete(bookingId) {
     optimisticDelete(bookingId);
-    await deleteReservation(bookingId);
+    await deleteBookingAction(bookingId);
   }
   return (
     <ul className="space-y-6">

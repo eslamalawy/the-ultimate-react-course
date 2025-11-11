@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { auth, signIn, signOut } from "./auth";
 import {
+  createBooking,
   deleteBooking,
   getBookings,
   updateBooking,
@@ -26,9 +27,29 @@ export async function updateProfile(formData) {
   revalidatePath("/account/profile");
 }
 
-export async function deleteReservation(bookingId) {
-  await new Promise((res) => setTimeout(res, 2000));
-  throw new Error("Sorry!");
+export async function createBookingAction(bookingDate, formData) {
+  const session = await auth();
+  if (!session) throw new Error("You must be logged in");
+
+  const newBooking = {
+    ...bookingDate,
+    guestId: session.user.guestId,
+    numGuests: Number(formData.get("numGuests")),
+    observations: formData.get("observations").slice(0, 1000),
+    extrasPrice: 0,
+    totalPrice: bookingDate.cabinPrice,
+    isPaid: false,
+    hasBreakfast: false,
+    status: "unconfirmed",
+  };
+  const data = await createBooking(newBooking);
+  //TODOS check the dates and data here in backend..
+  // Revalidate the client ROUTER CACHE
+  revalidatePath(`/cabins/${bookingDate.cabinId}`);
+  redirect("/cabins/thankyou");
+}
+
+export async function deleteBookingAction(bookingId) {
   const session = await auth();
   if (!session) throw new Error("You must be logged in");
 
