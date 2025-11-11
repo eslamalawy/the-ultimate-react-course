@@ -8,7 +8,7 @@
 
 ## 28 01 What Is React Query
 
-![28 01 What Is React Query](https://raw.githubusercontent.com/eslamalawy/the-ultimate-react-course/main/Snapshots/27 React Query Managing Remote State/28-01%20what%20is%20react%20query.png)
+![28 01 What Is React Query](https://raw.githubusercontent.com/eslamalawy/the-ultimate-react-course/main/Snapshots/27%20React%20Query%20Managing%20Remote%20State/28-01%20what%20is%20react%20query.png)
 
 ---
 

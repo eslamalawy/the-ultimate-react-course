@@ -8,7 +8,7 @@
 
 ## 29 01 How To Reuse Code In React
 
-![29 01 How To Reuse Code In React](https://raw.githubusercontent.com/eslamalawy/the-ultimate-react-course/main/Snapshots/28 Advanced React Patterns/29-01%20how%20to%20reuse%20code%20in%20react.png)
+![29 01 How To Reuse Code In React](https://raw.githubusercontent.com/eslamalawy/the-ultimate-react-course/main/Snapshots/28%20Advanced%20React%20Patterns/29-01%20how%20to%20reuse%20code%20in%20react.png)
 
 ---
 
