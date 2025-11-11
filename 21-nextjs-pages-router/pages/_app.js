@@ -16,7 +16,7 @@ export default function App({ Component, pageProps }) {
     <>
     <Head>
       <title>The Wild Oasis</title>
-      <link rel="icon" href="logo.png" />
+      <link rel="icon" href="/logo.png" />
     </Head>
     <div
       className={`${josefin.className} antialiased bg-primary-950 text-primary-100 min-h-screen flex flex-col relative`}
