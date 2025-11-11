@@ -28,7 +28,7 @@ these are the react projects i created with their demos in the ReadMe.md
 |20| 12-atomic-blog | https://context-blog.netlify.app/ |
 |21| 13-workout-timer | https://workout-timer-eslam.netlify.app/ |
 |22| 14-redux-intro | https://redux-bank-alawy.netlify.app/ |
-|23| **`15-fast-pizza`** | https://fast-pizza-eslam.netlify.app/ |
+|23| ![](https://img.shields.io/badge/15--fast--pizza-brightgreen?style=for-the-badge) | https://fast-pizza-eslam.netlify.app/ |
 |24| **`16-the-wild-oasis`** | https://the-wild-oasis-eslam.netlify.app/ |
 |25| 17-react-render-props-and-hoc-patterns | https://react-render-props-and-hoc-patterns.netlify.app/ |
 |26| 18-react-compound-component-pattern | https://react-compound-component-pattern.netlify.app/ |
