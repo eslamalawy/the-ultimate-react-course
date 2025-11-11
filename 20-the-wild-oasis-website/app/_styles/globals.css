@@ -39,8 +39,17 @@
 } */
 
 .rdp-root {
-  --rdp-cell-size: 32px !important;
+  --rdp-cell-size: 30px !important;
   --rdp-accent-color: theme("colors.accent.500") !important;
   --rdp-accent-background-color: theme("colors.accent.600") !important;
   margin: 0 !important;
+  .rdp-day {
+    width: 32px;
+    height: 32px;
+  }
+
+  .rdp-day_button {
+    width: 32px;
+    height: 32px;
+  }
 }
