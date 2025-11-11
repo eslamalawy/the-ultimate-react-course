@@ -1,8 +1,8 @@
-# The Wild Oasis Website
+# The Wild Oasis Website (Nextjs App Router)
 
 ### this project integerated the following technology decisions and tools:
 
-1.  NEXT.js Framework (v14.2.33) + middleware + server actions + useFormStatus + useTransition + useOptimistic
+1.  NEXT.js Framework (v14.2.33) + app router + middleware + server actions + useFormStatus + useTransition + useOptimistic
 2.  Tailwindcss
 3.  Supabase
 4.  React Error Boundary

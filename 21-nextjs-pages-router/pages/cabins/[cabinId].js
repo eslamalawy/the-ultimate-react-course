@@ -22,7 +22,7 @@ function Cabin({ cabin }) {
         <>
             <Head>
                 {/* <title> Cabin #{router.query.cabinId} // The Wild Oasis</title> */}
-                <title> Cabin {cabin.name} // The Wild Oasis</title>
+                <title> Cabin {cabin.name} / The Wild Oasis</title>
             </Head>
             <div className="max-w-6xl mx-auto mt-8">
                 <CabinView cabin={cabin} />

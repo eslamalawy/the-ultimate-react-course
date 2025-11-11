@@ -1,16 +1,11 @@
-# The Wild Oasis Website
+# The Wild Oasis Website (Nextjs Pages Router)
 
 ### this project integerated the following technology decisions and tools:
 
-1.  NEXT.js Framework (v14.2.33) + middleware + server actions + useFormStatus + useTransition + useOptimistic
+1.  NEXT.js Framework (v14.2.33) + pages router + getServerSideProps // Dynamically generated (SSR)  + getStaticProps // Statically generated (SSG)
 2.  Tailwindcss
 3.  Supabase
-4.  React Error Boundary
-5.  [Heroicons](https://heroicons.com/)
-6.  [Date-fns](https://date-fns.org/docs/Getting-Started)
-7.  [Clsx](https://github.com/lukeed/clsx)
-8.  [React Day Picker](https://daypicker.dev/)
-9.  [Next Auth](https://authjs.dev/getting-started/installation)
+4.  [Heroicons](https://heroicons.com/)
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
