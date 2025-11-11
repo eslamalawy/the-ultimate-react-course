@@ -1,6 +1,13 @@
 # Snapshots Gallery
 
-This folder contains 6 image(s).
+## Images
+
+- [01 State Where When To Use](#01-state-where-when-to-use)
+- [02 Driving State](#02-driving-state)
+- [03 When To Create New Component](#03-when-to-create-new-component)
+- [04 Component Category](#04-component-category)
+- [05 Component Composition](#05-component-composition)
+- [06 Component Props And Api](#06-component-props-and-api)
 
 ---
 
