@@ -33,5 +33,4 @@ these are the react projects i created with their demos in the ReadMe.md
 |25| 17-react-render-props-and-hoc-patterns | https://react-render-props-and-hoc-patterns.netlify.app/ |
 |26| 18-react-compound-component-pattern | https://react-compound-component-pattern.netlify.app/ |
 |27| ![](https://img.shields.io/badge/20--the--wild--oasis--website-8A2BA2?style=for-the-badge) | https://wild-oasis-eslam.vercel.app/ |
-|28| **`21-nextjs-pages-router`** | https://wild-oasis-pages-router.vercel.app/ |
 |28| ![](https://img.shields.io/badge/21--nextjs--pages--router-8A2BA2?style=for-the-badge) | https://wild-oasis-pages-router.vercel.app/ |
