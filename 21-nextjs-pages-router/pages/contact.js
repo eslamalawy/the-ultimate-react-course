@@ -5,11 +5,24 @@ export default function Contact() {
   const [success, setSuccess] = useState(false);
   const [message, setMessage] = useState('');
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
+    // Prepare data
     const formData = new FormData(e.target)
     const contactData = Object.fromEntries(formData.entries());
-    console.log(contactData)
+    // POST request
+    setIsSubmitting(true)
+    const response = await fetch('/api/contact', {
+      method: "POST",
+      body: JSON.stringify(contactData)
+    })
+    // Get result 
+    const { success, message } = await response.json();
+
+    // Set state
+    setMessage(message)
+    setSuccess(success)
+    setIsSubmitting(false)
   }
   return (
     <div>
@@ -17,7 +30,7 @@ export default function Contact() {
         Any question? Shoot us a message
       </h1>
 
-      <form onSubmit={handleSubmit} className='bg-primary-900 py-10 px-14 text-lg space-y-6 max-w-5xl mx-auto'>
+      {success === true ? <p className='text-center text-lg'>{message}</p> : <form onSubmit={handleSubmit} className='bg-primary-900 py-10 px-14 text-lg space-y-6 max-w-5xl mx-auto'>
         <div className='space-y-2'>
           <label>Full name</label>
           <input
@@ -62,11 +75,14 @@ export default function Contact() {
         </div>
 
         <div className='flex justify-between items-center text-red-500'>
-          <button className='bg-accent-500 px-8 py-4 text-primary-800 font-semibold hover:bg-accent-600 transition-all disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300'>
-            Send message
+
+          {!success && message ? <p>{message}</p> : <p></p>}
+
+          <button disabled={isSubmitting} className='bg-accent-500 px-8 py-4 text-primary-800 font-semibold hover:bg-accent-600 transition-all disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300'>
+            {isSubmitting ? "Sending..." : "Send message"}
           </button>
         </div>
-      </form>
+      </form>}
     </div>
   );
 }
