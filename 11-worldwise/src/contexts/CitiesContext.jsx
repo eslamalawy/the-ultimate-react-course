@@ -7,7 +7,7 @@ import {
 } from "react";
 
 const CitiesContext = createContext();
-const BASE_URL = "http://localhost:9000";
+const BASE_URL = "https://structural-felipa-marie4org-53b146e7.koyeb.app";
 
 const initialState = {
   cities: [],
